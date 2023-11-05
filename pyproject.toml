@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "un_datathon"
+version = "0.1.0"
+description = "UN Datathon codebase"
+authors = ["Theo Hintz <thintz.smc@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.12"
+numpy = "^1.23.2"
+matplotlib = "^3.5.3"
+requests = "^2.28.1"
+pandas = "^1.4.4"
+tqdm = "^4.65.0"
+einops = "^0.6.0"
+tensorboard = "^2.12.1"
+beartype = "^0.16.2"
+antigranular = "^0.2.12"
+
+[tool.poetry.dev-dependencies]
+ipython = ">=7.34,<8.0"
+ipykernel = "^6.15.2"
+black = "^22.8.0"
+mypy = "^0.971"
+flake8 = "^5.0.4"
+python-dotenv = "^0.21.0"
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
