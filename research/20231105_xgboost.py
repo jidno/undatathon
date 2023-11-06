@@ -7,7 +7,6 @@ model.load_model("/home/catalina/workspace/undatathon/data/god_model_2.model")
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
-
 X_train = pd.read_csv("/home/catalina/workspace/undatathon/data/jack_df.csv")
 #%%
 
@@ -32,13 +31,15 @@ sc.fit(X_train)
 
 X_train_transformed = sc.transform(X_train)
 #%%
-
-example = sc.transform(X_train.iloc[0].to_numpy().reshape(1, -1))
+import numpy as np
+example_from_streamlit = np.random.rand(1, 35) # Lo que salga del streamlit
+example = sc.transform(example_from_streamlit.clip(0,7))
 example
 #%%
-model.predict(example)
-# %%
-df = pd.read_csv("/home/catalina/workspace/undatathon/data/jack_df.csv")
-Y_train = df[df.columns[-6:-2]]
-# %%
-Y_train.iloc[0]
+y_hat = model.predict(example).clip(0,1)
+y_hat
+# Order:
+# cs_sold_more_animals
+# cs_borrowed_money       
+# cs_sold_prod_assets     
+# cs_begged
