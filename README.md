@@ -1,11 +1,54 @@
-MIT License
+# Project Title
 
-Copyright (c) 2023
+This project uses Poetry for dependency management and Streamlit for creating an interactive web application.
 
-Gonzalo Chiarlone, Agustín Freitas, Theo Hinz, Julian O'Flaherty, Catalina Trujillo
+## Prerequisites
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Ensure you have the following installed on your system:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+- Python 3.10 or later
+- Poetry
+- Streamlit
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+## Setup
+
+1. Clone the repository:
+
+   ```
+   git clone https://github.com/jidno/undatathon.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```
+   cd undatathon
+   ```
+
+3. Install dependencies using Poetry:
+   ```
+   python -m venv .venv
+   poetry install
+   ```
+
+## Running the Streamlit Demo
+
+1. Activate the Poetry environment:
+
+   ```
+   poetry shell
+   ```
+
+2. Run the Streamlit demo:
+   ```
+   streamlit run demo.py
+   ```
+
+Visit `http://localhost:8501` in your web browser to view the Streamlit application.
+
+## Contributing
+
+Please read `CONTRIBUTING.md` for details on our code of conduct, and the process for submitting pull requests to us.
+
+## License
+
+This project is licensed under the MIT License - see the `LICENSE.md` file for details
