@@ -160,3 +160,9 @@ wandb/
 *.pth
 *.ckpt
 *.csv
+
+# Ignore model weights
+*.model
+
+# Ignore datasets
+*.csv
