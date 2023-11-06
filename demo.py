@@ -127,9 +127,14 @@ with inter_column[0]:
     # Next to each of the shocks, add a slider to modify the value
 
     for i, shock in enumerate(shocks):
+        round_value = datapoint[shock].values[0]
+        if round_value < 0:
+            round_value = 0.0
+        elif round_value > 1:
+            round_value = 1.0
         with new_columns[i % 5]:
             inputs[shock] = st.slider(
-                label=shock, min_value=0.0, max_value=1.0, value=0.0
+                label=shock, min_value=0.0, max_value=1.0, value=round_value
             )
 
 inter_column = st.columns(1)
