@@ -87,3 +87,72 @@ cs_borrowed_money_yes       0.332863
 cs_sold_prod_assets_yes     0.333548
 cs_begged_yes               0.087751
 # %%
+import pandas as pd
+
+
+datapoints = pd.read_csv("/home/frei/workspace/undatathon/jack_df.csv")
+datapoints
+# %%
+import start
+import pandas as pd
+
+# %%
+jack_df = pd.read_csv("data/jack_df.csv")
+adm_level = pd.read_csv("data/level_1.csv")
+
+# %%
+jack_df
+# %%
+adm_level = adm_level[["adm1_name", "adm1_pcode", "adm0_name"]]
+# %%
+adm_level
+# %%
+jack_df = jack_df.merge(adm_level, on="adm1_pcode", how="inner")
+
+# %%
+jack_df
+# %%
+# Save to datapoints.csv
+jack_df.to_csv("datapoints.csv", index=False)
+# %%
+datapoints = pd.read_csv("datapoints.csv")
+datapoints
+# %%
+columns = datapoints.columns.values.tolist()
+
+# %%
+fcs_inputs = []
+shocks = []
+cs = []
+for col in columns:
+      if col.startswith("fcs_"):
+            fcs_inputs.append(col)
+      elif col.startswith("shock"):
+            shocks.append(col)
+      elif col.startswith("cs"):
+            cs.append(col)
+         
+
+print(fcs_inputs)
+print(shocks)
+print(cs)
+# %%
+countries = datapoints["adm0_name"].unique().tolist()
+countries
+# %%
+country_regions = datapoints[["adm0_name", "adm1_name"]].drop_duplicates()
+country_regions
+# %%
+regions = datapoints["adm1_name"].unique().tolist()
+regions
+
+# %%
+# Get rounds for a specific country and region
+country = "Afghanistan"
+region = "Kabul"
+rounds = datapoints[(datapoints["adm0_name"] == country) & (datapoints["adm1_name"] == region)]["inter_round"].unique().tolist()
+
+
+rounds
+
+# %%
