@@ -2,6 +2,13 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import json
+import matplotlib.pyplot as plt
+
+import xgboost as xgb
+from sklearn.preprocessing import StandardScaler
+
+model = xgb.XGBRegressor(tree_method="hist", device="cpu")
+model.load_model("data/god_model.model")
 
 st.set_page_config(layout="wide")
 
@@ -120,14 +127,9 @@ with inter_column[0]:
     # Next to each of the shocks, add a slider to modify the value
 
     for i, shock in enumerate(shocks):
-        round_value = datapoint[shock].values[0]
-        if round_value < 0:
-            round_value = 0.0
-        elif round_value > 1:
-            round_value = 1.0
         with new_columns[i % 5]:
             inputs[shock] = st.slider(
-                label=shock, min_value=0.0, max_value=1.0, value=round_value
+                label=shock, min_value=0.0, max_value=1.0, value=0.0
             )
 
 inter_column = st.columns(1)
@@ -138,3 +140,17 @@ if simulate_button:
     with inter_column[0]:
         st.subheader("Simulation of coping strategies")
         st.write("Predict coping strategies for the modified context")
+        sc = StandardScaler()
+        inputs_columns = list(inputs.keys())
+        sc.fit(DATAPOINTS[inputs_columns])
+        inputs = np.array(list(inputs.values()))
+        inputs = inputs.reshape(1, -1)
+        predictions = model.predict(sc.transform(inputs)).clip(0, 1)
+        pred_dict = {"cs": cs, "percentage": predictions.tolist()[0]}
+        df = pd.DataFrame(pred_dict)
+        st.write(df)
+
+        # Create the bar chart
+        st.bar_chart(
+            df.set_index("cs")["percentage"],
+        )

@@ -5,7 +5,7 @@ description = "UN Datathon codebase"
 authors = ["Theo Hintz <thintz.smc@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.12"
+python = ">=3.9.8,<3.12"
 numpy = "^1.23.2"
 matplotlib = "^3.5.3"
 requests = "^2.28.1"
@@ -16,6 +16,7 @@ tensorboard = "^2.12.1"
 beartype = "^0.16.2"
 antigranular = "^0.2.12"
 xgboost = "^2.0.1"
+streamlit = "^1.28.1"
 
 [tool.poetry.dev-dependencies]
 ipython = ">=7.34,<8.0"
